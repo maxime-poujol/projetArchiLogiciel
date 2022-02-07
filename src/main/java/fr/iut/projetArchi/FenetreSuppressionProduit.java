@@ -1,5 +1,7 @@
 package fr.iut.projetArchi;
 
+import fr.iut.projetArchi.catalogue.Catalogue;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +32,15 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-        this.dispose();
+        if(e.getSource() == btSupprimer){
+            System.out.println(combo.getSelectedItem());
+            System.out.println("btn supprimer");
+
+            //Catalogue.getInstance().removeProduit(combo.getSelectedItem());
+
+        }
+
+        //this.dispose();
     }
 
 }

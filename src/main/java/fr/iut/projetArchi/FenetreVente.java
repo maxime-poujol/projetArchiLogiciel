@@ -33,7 +33,12 @@ public class FenetreVente extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        this.dispose();
+
+        if (e.getSource() == btVente){
+            System.out.println("vente");
+        }
+
+        //this.dispose();
     }
 
 }

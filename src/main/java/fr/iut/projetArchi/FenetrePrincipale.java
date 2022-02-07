@@ -72,8 +72,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
 
     public void actionPerformed(ActionEvent e) {
 
-/* tabProduits permet de tester le fonctionnement des fen�tres avec un tableau de noms de produits "en dur"
-   Quand l'application fonctionnera, il faudra bien s�r r�cup�rer les noms des produits dans le Catalogue */
+/* tabProduits permet de tester le fonctionnement des fenêtres avec un tableau de noms de produits "en dur"
+   Quand l'application fonctionnera, il faudra bien sûr récupérer les noms des produits dans le Catalogue */
         String[] tabProduits = new String[]{"Mars", "Raider", "Twix", "Treets", "M&M's", "Smarties"};
         /* M�me chose pour tabCategories (partie 4) */
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };

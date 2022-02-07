@@ -35,7 +35,11 @@ public class FenetreAchat extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        this.dispose();
+        if (e.getSource() == btAchat){
+            System.out.println("achat");
+        }
+
+        //this.dispose();
     }
 
 }
