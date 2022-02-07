@@ -9,10 +9,18 @@ public class Catalogue implements I_Catalogue{
 
     private Set<I_Produit> lesProduits;
 
+    private static Catalogue instance;
+
     public Catalogue(){
         lesProduits = new HashSet<>();
     }
 
+    public static Catalogue getInstance() {
+        if (instance == null) {
+            instance = new Catalogue();
+        }
+        return instance;
+    }
 
     @Override
     public boolean addProduit(I_Produit produit) {
