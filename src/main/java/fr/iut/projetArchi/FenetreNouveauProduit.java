@@ -49,6 +49,15 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btValider){
+            System.out.println(txtNom.getText());
+            System.out.println(txtPrixHT.getText());
+            System.out.println(txtQte.getText());
+            System.out.println("btn valider");
+
+
+        }
+
         this.dispose();
     }
 

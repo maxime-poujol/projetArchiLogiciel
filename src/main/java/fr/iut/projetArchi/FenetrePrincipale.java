@@ -19,7 +19,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
     private final JButton btVente;
     private final JButton btQuitter;
 
-
     public FenetrePrincipale() {
 
         setTitle("exercice Produits");
