@@ -1,4 +1,4 @@
-package fr.iut.projetArchi.interfaces;
+package fr.iut.projetArchi.produits;
 
 public interface I_Produit {
 

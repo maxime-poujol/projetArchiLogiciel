@@ -1,4 +1,6 @@
-package fr.iut.projetArchi.interfaces;
+package fr.iut.projetArchi.catalogue;
+
+import fr.iut.projetArchi.produits.I_Produit;
 
 import java.util.List;
 
