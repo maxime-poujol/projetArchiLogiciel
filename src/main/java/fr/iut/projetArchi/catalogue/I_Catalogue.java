@@ -1,6 +1,7 @@
 package fr.iut.projetArchi.catalogue;
 
 import fr.iut.projetArchi.produits.I_Produit;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

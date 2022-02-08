@@ -1,24 +1,27 @@
-package entite;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.iut.projetArchi.catalogue.Catalogue;
+import fr.iut.projetArchi.catalogue.I_Catalogue;
+import fr.iut.projetArchi.produits.I_Produit;
+import fr.iut.projetArchi.produits.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class CatalogueTest2 {
 
-	I_Catalogue cat;
+	I_Catalogue cat = Catalogue.getInstance();
 
 	@Before
 	public void setUp() {
-		cat = new Catalogue();
+		//cat = new Catalogue();
 //		Si votre Catalogue est un Singleton, il faut changer la ligne précédente puis vider le Catalogue avec la méthode clear() comme indiqué à la ligne suivante
-//		cat.clear();
+		cat.clear();
 	}
-	
+
 	@Test
 	public void testConstructeurCatalogue() {
 		assertNotNull("créer catalogue", cat);

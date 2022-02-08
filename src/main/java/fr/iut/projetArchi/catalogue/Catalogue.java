@@ -2,8 +2,12 @@ package fr.iut.projetArchi.catalogue;
 
 import fr.iut.projetArchi.produits.I_Produit;
 import fr.iut.projetArchi.produits.Produit;
+import fr.iut.projetArchi.util.Util;
+import org.jetbrains.annotations.NotNull;
 
+import java.text.NumberFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Catalogue implements I_Catalogue{
 
@@ -11,7 +15,7 @@ public class Catalogue implements I_Catalogue{
 
     private static Catalogue instance;
 
-    public Catalogue(){
+    private Catalogue(){
         lesProduits = new HashSet<>();
     }
 
@@ -24,12 +28,15 @@ public class Catalogue implements I_Catalogue{
 
     @Override
     public boolean addProduit(I_Produit produit) {
+        if (produit == null) return false;
+        if (produit.getPrixUnitaireHT() <= 0) return false;
+        if (produit.getPrixStockTTC() <= 0) return false;
         return lesProduits.add(produit);
     }
 
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
-        return addProduit(new Produit(qte, nom, prix));
+        return addProduit(new Produit(nom, prix, qte));
     }
 
     @Override
@@ -78,17 +85,30 @@ public class Catalogue implements I_Catalogue{
     @Override
     public double getMontantTotalTTC() {
 
-        int montant = 0;
+        double montant = 0;
 
         for (I_Produit p: lesProduits) {
             montant += p.getPrixStockTTC();
          }
 
-        return montant;
+        return Util.doubleDeuxChiffreApresVirgule(montant);
     }
 
     @Override
     public void clear() {
         lesProduits.clear();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+
+        for (I_Produit produit: lesProduits) {
+            s.append(produit.getNom()).append(" - prix HT : ").append(produit.getPrixUnitaireHT()).append("€ - prix TTC : ").append(produit.getPrixUnitaireTTC()).append("€ - quantité en stock : ").append(produit.getQuantite()).append("\n");
+        }
+
+        s.append("\n").append("Montant total TTC du stock : ").append(getMontantTotalTTC()).append(" €");
+
+        return s.toString();
     }
 }

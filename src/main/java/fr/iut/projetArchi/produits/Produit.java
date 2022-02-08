@@ -1,5 +1,9 @@
 package fr.iut.projetArchi.produits;
 
+import fr.iut.projetArchi.util.Util;
+
+import java.util.Objects;
+
 public class Produit implements I_Produit {
 
     private int quantiteStock;
@@ -7,7 +11,7 @@ public class Produit implements I_Produit {
     private double prixUnitaireHT;
     private static float tauxTVA = 0.2f;
 
-    public Produit(int quantiteStock, String nom, double prixUnitaireHT) {
+    public Produit(String nom,  double prixUnitaireHT, int quantiteStock) {
         this.quantiteStock = quantiteStock;
         this.nom = nom;
         this.prixUnitaireHT = prixUnitaireHT;
@@ -40,12 +44,12 @@ public class Produit implements I_Produit {
 
     @Override
     public double getPrixUnitaireHT() {
-        return prixUnitaireHT;
+        return Util.doubleDeuxChiffreApresVirgule(prixUnitaireHT);
     }
 
     @Override
     public double getPrixUnitaireTTC() {
-        return prixUnitaireHT * tauxTVA;
+        return Util.doubleDeuxChiffreApresVirgule(prixUnitaireHT * (1 + tauxTVA));
     }
 
 
