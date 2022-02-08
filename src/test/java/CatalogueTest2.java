@@ -810,7 +810,7 @@ public class CatalogueTest2 {
 
 	@Test
 	public void testClear() {
-		fail("A vous d'écrire le code de ce test");
+		assertArrayEquals(new String[]{}, cat.getNomProduits());
 	}
 
 	private I_Produit createProduit(String nom, double prixHT, int quantite) {

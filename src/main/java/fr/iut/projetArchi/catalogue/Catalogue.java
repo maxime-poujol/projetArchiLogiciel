@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class Catalogue implements I_Catalogue{
 
-    private Set<I_Produit> lesProduits;
+    private List<I_Produit> lesProduits;
 
     private static Catalogue instance;
 
     private Catalogue(){
-        lesProduits = new HashSet<>();
+        lesProduits = new ArrayList<>();
     }
 
     public static Catalogue getInstance() {
@@ -39,12 +39,16 @@ public class Catalogue implements I_Catalogue{
     public boolean addProduit(I_Produit produit) {
         if (produit == null) return false;
         if (produit.getNom() == null) return false;
-        String nom = produit.getNom();
-        nom = nom.replace("\n","");
-        nom = nom.replace("\t","");
-        produit = new Produit(nom,produit.getPrixUnitaireHT(),produit.getQuantite());
         if (produit.getPrixUnitaireHT() <= 0) return false;
-        if (produit.getPrixStockTTC() <= 0) return false;
+        if (produit.getQuantite() < 0) return false;
+        String nom = Util.formatNom(produit.getNom());
+        produit = new Produit(nom,produit.getPrixUnitaireHT(),produit.getQuantite());
+
+        for (I_Produit p: lesProduits ) {
+            if (p.equals(produit)) {
+                return false;
+            }
+        }
         return lesProduits.add(produit);
 
     }
@@ -98,12 +102,12 @@ public class Catalogue implements I_Catalogue{
 
         int index = 0;
         String[] nomProduit = new String[lesProduits.size()];
-
         for (I_Produit p: lesProduits) {
-            nomProduit[index] += p.getNom();
+
+            nomProduit[index] = p.getNom();
             index++;
         }
-
+        Arrays.sort(nomProduit);
         return nomProduit;
 
     }
@@ -116,9 +120,6 @@ public class Catalogue implements I_Catalogue{
         for (I_Produit p: lesProduits) {
             montant += p.getPrixStockTTC();
          }
-
-        System.out.println(montant);
-        System.out.println(Util.doubleDeuxChiffreApresVirgule(montant));
 
         return Util.doubleDeuxChiffreApresVirgule(montant);
     }
@@ -133,10 +134,12 @@ public class Catalogue implements I_Catalogue{
         StringBuilder s = new StringBuilder();
 
         for (I_Produit produit: lesProduits) {
-            s.append(produit.getNom()).append(" - prix HT : ").append(produit.getPrixUnitaireHT()).append("€ - prix TTC : ").append(produit.getPrixUnitaireTTC()).append("€ - quantité en stock : ").append(produit.getQuantite()).append("\n");
+            double prixHT = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireHT());
+            double prixTTC = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC());
+            s.append(produit.getNom()).append(" - prix HT : ").append(Util.formatDoubleNumber(prixHT)).append(" € - prix TTC : ").append(Util.formatDoubleNumber(prixTTC)).append(" € - quantité en stock : ").append(produit.getQuantite()).append("\n");
         }
 
-        s.append("\n").append("Montant total TTC du stock : ").append(getMontantTotalTTC()).append(" €");
+        s.append("\n").append("Montant total TTC du stock : ").append(Util.formatDoubleNumber(getMontantTotalTTC())).append(" €");
 
         return s.toString();
     }
