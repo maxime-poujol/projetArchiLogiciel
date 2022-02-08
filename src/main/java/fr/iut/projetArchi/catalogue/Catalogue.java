@@ -38,6 +38,11 @@ public class Catalogue implements I_Catalogue{
     @Override
     public boolean addProduit(I_Produit produit) {
         if (produit == null) return false;
+        if (produit.getNom() == null) return false;
+        String nom = produit.getNom();
+        nom = nom.replace("\n","");
+        nom = nom.replace("\t","");
+        produit = new Produit(nom,produit.getPrixUnitaireHT(),produit.getQuantite());
         if (produit.getPrixUnitaireHT() <= 0) return false;
         if (produit.getPrixStockTTC() <= 0) return false;
         return lesProduits.add(produit);
