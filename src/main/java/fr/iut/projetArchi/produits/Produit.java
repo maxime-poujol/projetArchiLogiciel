@@ -44,12 +44,12 @@ public class Produit implements I_Produit {
 
     @Override
     public double getPrixUnitaireHT() {
-        return Util.doubleDeuxChiffreApresVirgule(prixUnitaireHT);
+        return prixUnitaireHT;
     }
 
     @Override
     public double getPrixUnitaireTTC() {
-        return Util.doubleDeuxChiffreApresVirgule(prixUnitaireHT * (1 + tauxTVA));
+        return prixUnitaireHT * (1 + tauxTVA);
     }
 
 

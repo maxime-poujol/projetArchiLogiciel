@@ -112,6 +112,9 @@ public class Catalogue implements I_Catalogue{
             montant += p.getPrixStockTTC();
          }
 
+        System.out.println(montant);
+        System.out.println(Util.doubleDeuxChiffreApresVirgule(montant));
+
         return Util.doubleDeuxChiffreApresVirgule(montant);
     }
 
