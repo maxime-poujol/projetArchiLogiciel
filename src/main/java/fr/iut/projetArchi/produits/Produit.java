@@ -57,4 +57,17 @@ public class Produit implements I_Produit {
     public double getPrixStockTTC() {
         return getPrixUnitaireTTC() * quantiteStock;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produit produit = (Produit) o;
+        return nom.equals(produit.nom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom);
+    }
 }

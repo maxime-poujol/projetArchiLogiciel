@@ -26,12 +26,22 @@ public class Catalogue implements I_Catalogue{
         return instance;
     }
 
+    private I_Produit getProductByName(String name) {
+        for(I_Produit produit : lesProduits) {
+            if (produit.getNom().equals(name)) {
+                return produit;
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean addProduit(I_Produit produit) {
         if (produit == null) return false;
         if (produit.getPrixUnitaireHT() <= 0) return false;
         if (produit.getPrixStockTTC() <= 0) return false;
         return lesProduits.add(produit);
+
     }
 
     @Override
@@ -41,6 +51,9 @@ public class Catalogue implements I_Catalogue{
 
     @Override
     public int addProduits(List<I_Produit> l) {
+        if (l == null) {
+            return 0;
+        }
 
         int compteur = 0;
 
@@ -58,13 +71,21 @@ public class Catalogue implements I_Catalogue{
 
     @Override
     public boolean acheterStock(String nomProduit, int qteAchetee) {
-
-        return false;
+        I_Produit product = getProductByName(nomProduit);
+        if (product == null) {
+            return false;
+        }
+        return product.ajouter(qteAchetee);
     }
 
     @Override
     public boolean vendreStock(String nomProduit, int qteVendue) {
-        return false;
+
+        I_Produit product = getProductByName(nomProduit);
+        if (product == null) {
+            return false;
+        }
+        return product.enlever(qteVendue);
     }
 
     @Override
