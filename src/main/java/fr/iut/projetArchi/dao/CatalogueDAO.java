@@ -1,23 +1,19 @@
 package fr.iut.projetArchi.dao;
 
-
-public class ProduitDAO extends DAO{
-
+public class CatalogueDAO extends DAO{
 
     @Override
     protected String nameTable() {
-        return "Produit";
+        return "Catalogue";
     }
 
     @Override
     protected String idTable() {
-        return "idProduit";
+        return "idCatalogue";
     }
 
     @Override
     protected void startFixtures() {
 
     }
-
-
 }

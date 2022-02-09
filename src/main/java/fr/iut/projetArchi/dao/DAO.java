@@ -32,30 +32,64 @@ public abstract class DAO {
     }
 
 
-
+    /**
+     *
+     * @param values
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet create(Map<String,Object> values) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO ").append(nameTable()).append(" VALUES(");
         for(Map.Entry<String, Object> entry : values.entrySet()) {
-
+            sql.append("?,");
         }
         PreparedStatement ps = requetePrepare("INSERT INTO " + nameTable() + "VALUES ()");
         return ps.executeQuery();
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet update(Map<String, Object> map) throws SQLException {
         PreparedStatement ps = requetePrepare("UPDATE " + nameTable() + "SET");
         return ps.executeQuery();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet delete(String id) throws SQLException {
         PreparedStatement ps = requetePrepare("DELETE FROM " + nameTable() + "WHERE id = ?");
         ps.setString(1,id);
         return ps.executeQuery();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet findAll() throws SQLException {
         PreparedStatement ps = requetePrepare("SELECT * FROM " + nameTable());
+        return ps.executeQuery();
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    protected ResultSet find(int id) throws SQLException {
+        PreparedStatement ps = requetePrepare("SELECT * FROM " + nameTable() + " WHERE " + idTable() + " = ?");
+        ps.setInt(1, id);
         return ps.executeQuery();
     }
 
@@ -64,6 +98,12 @@ public abstract class DAO {
      * @return le nom de la table
      */
     protected abstract String nameTable();
+
+    /**
+     *
+     * @return l'id de la table
+     */
+    protected abstract String idTable();
 
     /**
      * Lance les fixtures afin de remplir la BD pour des tests
