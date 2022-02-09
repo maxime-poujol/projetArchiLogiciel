@@ -1,5 +1,7 @@
 package fr.iut.projetArchi;
 
+import fr.iut.projetArchi.controller.ProduitController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,10 +37,10 @@ public class FenetreVente extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == btVente){
-            System.out.println("vente");
+            ProduitController.vendreProduit(combo.getSelectedItem().toString(), Integer.parseInt(txtQuantite.getText()));
         }
 
-        //this.dispose();
+        this.dispose();
     }
 
 }
