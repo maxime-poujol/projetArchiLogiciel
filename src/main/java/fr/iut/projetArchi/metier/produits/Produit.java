@@ -1,6 +1,4 @@
-package fr.iut.projetArchi.produits;
-
-import fr.iut.projetArchi.util.Util;
+package fr.iut.projetArchi.metier.produits;
 
 import java.util.Objects;
 

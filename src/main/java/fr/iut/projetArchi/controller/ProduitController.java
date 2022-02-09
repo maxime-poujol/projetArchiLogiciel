@@ -2,7 +2,7 @@ package fr.iut.projetArchi.controller;
 
 import fr.iut.projetArchi.FenetreAchat;
 import fr.iut.projetArchi.FenetreVente;
-import fr.iut.projetArchi.catalogue.Catalogue;
+import fr.iut.projetArchi.metier.catalogue.Catalogue;
 
 public class ProduitController {
 

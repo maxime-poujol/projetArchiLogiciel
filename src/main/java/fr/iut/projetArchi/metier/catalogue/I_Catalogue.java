@@ -1,7 +1,6 @@
-package fr.iut.projetArchi.catalogue;
+package fr.iut.projetArchi.metier.catalogue;
 
-import fr.iut.projetArchi.produits.I_Produit;
-import org.jetbrains.annotations.NotNull;
+import fr.iut.projetArchi.metier.produits.I_Produit;
 
 import java.util.List;
 

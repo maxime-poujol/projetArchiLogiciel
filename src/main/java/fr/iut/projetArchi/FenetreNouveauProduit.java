@@ -1,6 +1,5 @@
 package fr.iut.projetArchi;
 
-import fr.iut.projetArchi.catalogue.Catalogue;
 import fr.iut.projetArchi.controller.CatalogueController;
 
 import javax.swing.*;

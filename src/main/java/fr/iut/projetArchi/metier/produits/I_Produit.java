@@ -1,4 +1,4 @@
-package fr.iut.projetArchi.produits;
+package fr.iut.projetArchi.metier.produits;
 
 public interface I_Produit {
 

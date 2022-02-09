@@ -1,6 +1,6 @@
 package fr.iut.projetArchi;
 
-import fr.iut.projetArchi.catalogue.Catalogue;
+import fr.iut.projetArchi.metier.catalogue.Catalogue;
 import fr.iut.projetArchi.controller.CatalogueController;
 import fr.iut.projetArchi.controller.ProduitController;
 import fr.iut.projetArchi.controller.StockController;

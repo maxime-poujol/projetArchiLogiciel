@@ -3,10 +3,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.iut.projetArchi.catalogue.Catalogue;
-import fr.iut.projetArchi.catalogue.I_Catalogue;
-import fr.iut.projetArchi.produits.I_Produit;
-import fr.iut.projetArchi.produits.Produit;
+import fr.iut.projetArchi.metier.catalogue.Catalogue;
+import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
+import fr.iut.projetArchi.metier.produits.I_Produit;
+import fr.iut.projetArchi.metier.produits.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
