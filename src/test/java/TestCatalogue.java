@@ -10,8 +10,7 @@ import fr.iut.projetArchi.produits.Produit;
 import org.junit.Before;
 import org.junit.Test;
 
-
-public class CatalogueTest2 {
+public class TestCatalogue {
 
 	I_Catalogue cat = Catalogue.getInstance();
 
