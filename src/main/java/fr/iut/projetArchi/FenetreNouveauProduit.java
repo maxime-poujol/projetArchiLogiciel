@@ -1,6 +1,7 @@
 package fr.iut.projetArchi;
 
 import fr.iut.projetArchi.catalogue.Catalogue;
+import fr.iut.projetArchi.controller.CatalogueController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,18 +53,19 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btValider){
-            System.out.println(txtNom.getText());
-            System.out.println(txtPrixHT.getText());
-            System.out.println(txtQte.getText());
             System.out.println("btn valider");
 
             try {
+                String nom = txtNom.getText();
                 double prix = Double.parseDouble(txtPrixHT.getText());
                 int quantite = Integer.parseInt(txtQte.getText());
-                Catalogue.getInstance().addProduit(txtNom.getText(), prix, quantite);
+                CatalogueController.ajouterProduit(nom, prix, quantite);
 
             } catch (NumberFormatException exception) {
                 exception.printStackTrace();
+            }finally {
+                System.out.println("Au revoir");
+                this.dispose();
             }
 
         }

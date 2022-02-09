@@ -1,12 +1,16 @@
 package fr.iut.projetArchi;
 
+import fr.iut.projetArchi.catalogue.Catalogue;
+import fr.iut.projetArchi.controller.CatalogueController;
+import fr.iut.projetArchi.controller.ProduitController;
+import fr.iut.projetArchi.controller.StockController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 
 public class FenetrePrincipale extends JFrame implements ActionListener, WindowListener {
 
@@ -62,6 +66,8 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
         btVente.addActionListener(this);
         btQuitter.addActionListener(this);
 
+        fixtures();
+
         addWindowListener(this);
         setVisible(true);
     }
@@ -78,14 +84,15 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
         /* M�me chose pour tabCategories (partie 4) */
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 
-        if (e.getSource() == btAfficher)
-            new FenetreAffichage("ajourd'hui nous allons faire de la programmation en 5 couches");
-        if (e.getSource() == btNouveauProduit)
-//			new fr.iut.projetArchi.FenetreNouveauProduit(tabCategories);
-            new FenetreNouveauProduit();
-        if (e.getSource() == btSupprimerProduit) new FenetreSuppressionProduit(tabProduits);
-//		if (e.getSource() == btNouvelleCategorie)
-//			new FenetreNouvelleCategorie();
+        if (e.getSource() == btAfficher) {
+            StockController.openWindowStock();
+        }
+        if (e.getSource() == btNouveauProduit) {
+            CatalogueController.openWindowAjoutProduit();
+        }
+        if (e.getSource() == btSupprimerProduit) {
+            CatalogueController.openWindowSupprimerProduit();
+        }
 //		if (e.getSource() == btSupprimerCategorie)
 //			new FenetreSuppressionCategorie(tabCategories);
         if (e.getSource() == btAchat) new FenetreAchat(tabProduits);
@@ -117,6 +124,14 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
     }
 
     public void windowOpened(WindowEvent arg0) {
+    }
+
+    public void fixtures(){
+        Catalogue.getInstance().addProduit("Mars", 15, 2);
+        Catalogue.getInstance().addProduit("Twix", 10, 6);
+        Catalogue.getInstance().addProduit("M&M's", 8, 1);
+        Catalogue.getInstance().addProduit("Bounty", 4, 2);
+        Catalogue.getInstance().addProduit("Treets", 11, 2);
     }
 
 }

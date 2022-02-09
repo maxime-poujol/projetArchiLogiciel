@@ -1,0 +1,33 @@
+package fr.iut.projetArchi.controller;
+
+import fr.iut.projetArchi.FenetreNouveauProduit;
+import fr.iut.projetArchi.FenetreSuppressionProduit;
+import fr.iut.projetArchi.catalogue.Catalogue;
+
+public class CatalogueController {
+
+
+    public static void openWindowAjoutProduit(){
+        new FenetreNouveauProduit();
+    }
+
+    public static void openWindowSupprimerProduit(){
+        new FenetreSuppressionProduit(Catalogue.getInstance().getNomProduits());
+    }
+
+    public static boolean ajouterProduit(String nom, double prixHT, int quantite){
+        return Catalogue.getInstance().addProduit(nom, prixHT,quantite);
+    }
+
+    public static boolean supprimerProduit(String nom){
+        return Catalogue.getInstance().removeProduit(nom);
+    }
+
+
+
+
+
+
+
+
+}
