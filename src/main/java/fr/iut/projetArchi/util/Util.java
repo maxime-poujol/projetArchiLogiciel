@@ -10,7 +10,8 @@ public class Util {
         NumberFormat format = NumberFormat.getNumberInstance();
         format.setMinimumFractionDigits(2);
         format.setMaximumFractionDigits(2);
-        return format.format(valeur);
+
+        return format.format(valeur).replace(',', '.');
     }
 
     public static String frStringDeuxChiffreApresVirgule(double valeur){
