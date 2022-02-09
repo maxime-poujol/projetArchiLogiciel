@@ -3,11 +3,8 @@ package fr.iut.projetArchi.catalogue;
 import fr.iut.projetArchi.produits.I_Produit;
 import fr.iut.projetArchi.produits.Produit;
 import fr.iut.projetArchi.util.Util;
-import org.jetbrains.annotations.NotNull;
 
-import java.text.NumberFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Catalogue implements I_Catalogue{
 
@@ -134,12 +131,19 @@ public class Catalogue implements I_Catalogue{
         StringBuilder s = new StringBuilder();
 
         for (I_Produit produit: lesProduits) {
-            double prixHT = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireHT());
-            double prixTTC = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC());
-            s.append(produit.getNom()).append(" - prix HT : ").append(Util.formatDoubleNumber(prixHT)).append(" € - prix TTC : ").append(Util.formatDoubleNumber(prixTTC)).append(" € - quantité en stock : ").append(produit.getQuantite()).append("\n");
+           // double prixHT = Util.doubleDeuxChiffreApresVirgule();
+            //double prixTTC = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC());
+            //s.append(produit.getNom()).append(" - prix HT : ").append(Util.formatDoubleNumber(prixHT)).append(" € - prix TTC : ").append(Util.formatDoubleNumber(prixTTC)).append(" € - quantité en stock : ").append(produit.getQuantite()).append("\n");
+            s.append(produit.getNom()).append(" - prix HT : ")
+                    .append(Util.frStringDeuxChiffreApresVirgule(produit.getPrixUnitaireHT()))
+                    .append(" € - prix TTC : ")
+                    .append(Util.frStringDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC()))
+                    .append(" € - quantité en stock : ")
+                    .append(produit.getQuantite())
+                    .append("\n");
         }
 
-        s.append("\n").append("Montant total TTC du stock : ").append(Util.formatDoubleNumber(getMontantTotalTTC())).append(" €");
+        s.append("\n").append("Montant total TTC du stock : ").append(Util.frStringDeuxChiffreApresVirgule(getMontantTotalTTC())).append(" €");
 
         return s.toString();
     }

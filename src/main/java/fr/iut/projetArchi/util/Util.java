@@ -2,49 +2,39 @@ package fr.iut.projetArchi.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Util {
 
+    private static String stringDeuxChiffreApresVirgule(double valeur){
+        NumberFormat format = NumberFormat.getNumberInstance();
+        format.setMinimumFractionDigits(2);
+        format.setMaximumFractionDigits(2);
+        return format.format(valeur);
+    }
+
+    public static String frStringDeuxChiffreApresVirgule(double valeur){
+        return stringDeuxChiffreApresVirgule(valeur).replace('.', ',');
+    }
 
     public static double doubleDeuxChiffreApresVirgule(double valeur){
-        BigDecimal format = new BigDecimal(Double.toString(valeur))
-                .setScale(2, RoundingMode.HALF_UP);
-        return format.doubleValue();
+        return Double.parseDouble(stringDeuxChiffreApresVirgule(valeur));
     }
 
-    public static String formatDoubleNumber(double valeur) {
-        String stringDouble = Double.toString(valeur);
-        String[] parsed = stringDouble.split("\\.");
-        switch (parsed[1].length()) {
-            case 0 -> parsed[1] += "00";
-            case 1 -> parsed[1] += "0";
-        }
-        return String.join(",",parsed);
-    }
 
     public static String formatNom(String nom) {
-        int first = 0;
-        int last = nom.length();
 
-        boolean found = false;
-        for (int i = 0; i < nom.length() && !found; i++) {
-            if (nom.charAt(i) != ' ' && nom.charAt(i) != '\t') {
-                first = i;
-                found = true;
-            }
+        nom = nom.replace('\t',' ');
+
+        while (nom.charAt(nom.length() - 1) == ' '){
+            nom = nom.substring(0, nom.length() - 1);
         }
 
-        found = false;
-        for (int i = nom.length() - 1; i >= 0 && !found; i--) {
-            if (nom.charAt(i) != ' ' && nom.charAt(i) != '\t') {
-                last = i;
-                found = true;
-            }
+        while (nom.charAt(0) == ' '){
+            nom = nom.substring(1);
         }
 
-        return nom.substring(first,last + 1).replace('\t',' ');
+        return nom;
     }
 
 }
