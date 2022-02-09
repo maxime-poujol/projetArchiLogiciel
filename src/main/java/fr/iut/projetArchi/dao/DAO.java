@@ -11,7 +11,7 @@ public abstract class DAO {
 
     public DAO() {
         try {
-            //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("oracle.jdbc.driver.OracleDriver");
 
             cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "poujolm", "071563154FB");
 
