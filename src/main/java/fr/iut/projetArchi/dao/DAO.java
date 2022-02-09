@@ -1,6 +1,8 @@
 package fr.iut.projetArchi.dao;
 
 import java.sql.*;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class DAO {
@@ -16,6 +18,8 @@ public abstract class DAO {
             cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "poujolm", "071563154FB");
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -39,13 +43,29 @@ public abstract class DAO {
      * @throws SQLException
      */
     protected ResultSet create(Map<String,Object> values) throws SQLException {
-        StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO ").append(nameTable()).append(" VALUES(");
-        for(Map.Entry<String, Object> entry : values.entrySet()) {
-            sql.append("?,");
+        String sql = "INSERT INTO " + nameTable() + " VALUES ("
+                + String.join("", Collections.nCopies(values.size(), "?,"));
+        sql = sql.substring(0, sql.length() - 1);
+        sql += ");";
+        System.out.println(sql);
+        //PreparedStatement ps = requetePrepare(sql2);
+        //return ps.executeQuery();
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("test", 2);
+        map.put("test1", 2);
+        map.put("test2", 2);
+        map.put("test3", 2);
+        map.put("test4", 2);
+
+        try {
+            new ProduitDAO().create(map);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        PreparedStatement ps = requetePrepare("INSERT INTO " + nameTable() + "VALUES ()");
-        return ps.executeQuery();
     }
 
     /**
