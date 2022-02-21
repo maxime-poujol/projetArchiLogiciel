@@ -1,17 +1,18 @@
 package fr.iut.projetArchi.dao;
 
+import fr.iut.projetArchi.dao.produit.ProduitDAORelationnel;
+
 import java.sql.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class DAO {
-
+public abstract class RelationnelDAO{
 
     private ResultSet rs;
     private Connection cn;
 
-    public DAO() {
+    public RelationnelDAO() {
 //            cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "poujolm", "071563154FB");
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -21,7 +22,6 @@ public abstract class DAO {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -49,7 +49,7 @@ public abstract class DAO {
      * @return ResultSet
      * @throws SQLException
      */
-    protected ResultSet create(Map<String,Object> values) throws SQLException {
+    public void create(Map<String,Object> values) throws SQLException {
         //creation debut string sql
         StringBuilder sql = new StringBuilder("INSERT INTO " + nameTable() + "(");
 
@@ -79,7 +79,7 @@ public abstract class DAO {
 //            i++;
 //        }
 //        return ps.executeQuery();
-        return null;
+        //return null;
     }
 
     public static void main(String[] args) {
@@ -91,7 +91,7 @@ public abstract class DAO {
         map.put("test4", 2);
 
         try {
-            new ProduitDAO().create(map);
+            new ProduitDAORelationnel().create(map);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,7 +103,7 @@ public abstract class DAO {
      * @return ResultSet
      * @throws SQLException
      */
-    protected ResultSet update(Map<String, Object> values, int id) throws SQLException {
+    public void update(Map<String, Object> values, int id) throws SQLException {
         StringBuilder sql = new StringBuilder("UPDATE " + nameTable() + " SET ");
 
         for (String key : values.keySet()) {
@@ -124,7 +124,7 @@ public abstract class DAO {
         }
 
         func_264852_p(ps,i,id);
-        return ps.executeQuery();
+        ps.executeQuery();
     }
 
     /**
@@ -133,10 +133,10 @@ public abstract class DAO {
      * @return
      * @throws SQLException
      */
-    protected ResultSet delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         PreparedStatement ps = requetePrepare("DELETE FROM " + nameTable() + " WHERE " + idTable() + " = ?");
         ps.setInt(1,id);
-        return ps.executeQuery();
+        /*return*/ ps.executeQuery();
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class DAO {
      * @return ResultSet
      * @throws SQLException
      */
-    protected ResultSet findAll() throws SQLException {
+    public ResultSet findAll() throws SQLException {
         PreparedStatement ps = requetePrepare("SELECT * FROM " + nameTable());
         return ps.executeQuery();
     }
@@ -155,7 +155,7 @@ public abstract class DAO {
      * @return ResultSet
      * @throws SQLException
      */
-    protected ResultSet find(int id) throws SQLException {
+    public ResultSet find(int id) throws SQLException {
         PreparedStatement ps = requetePrepare("SELECT * FROM " + nameTable() + " WHERE " + idTable() + " = ?");
         ps.setInt(1, id);
         return ps.executeQuery();
