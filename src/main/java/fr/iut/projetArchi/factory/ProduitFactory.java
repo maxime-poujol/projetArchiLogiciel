@@ -11,8 +11,13 @@ import java.util.Properties;
 
 public class ProduitFactory {
 
+    private ProduitFactory intance;
 
-    public ProduitDAO createProduitDAO(){
+    private ProduitFactory() {
+
+    }
+
+    public ProduitDAO createProduitDAO() {
 
         try (InputStream input = new FileInputStream("config.properties")) {
             Properties prop = new Properties();
@@ -30,8 +35,15 @@ public class ProduitFactory {
             ex.printStackTrace();
         }
 
-    return null;
+        return null;
 
+    }
+
+    public ProduitFactory getIntance() {
+        if (intance == null){
+            return new ProduitFactory();
+        }
+        return intance;
     }
 
     public static void main(String[] args) {

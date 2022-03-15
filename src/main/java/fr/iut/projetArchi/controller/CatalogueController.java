@@ -7,27 +7,21 @@ import fr.iut.projetArchi.metier.catalogue.Catalogue;
 public class CatalogueController {
 
 
-    public static void openWindowAjoutProduit(){
+    public static void openWindowAjoutProduit() {
         new FenetreNouveauProduit();
     }
 
-    public static void openWindowSupprimerProduit(){
+    public static void openWindowSupprimerProduit() {
         new FenetreSuppressionProduit(Catalogue.getInstance().getNomProduits());
     }
 
-    public static boolean ajouterProduit(String nom, double prixHT, int quantite){
-        return Catalogue.getInstance().addProduit(nom, prixHT,quantite);
+    public static boolean ajouterProduit(String nom, double prixHT, int quantite) {
+        return Catalogue.getInstance().addProduit(nom, prixHT, quantite);
     }
 
-    public static boolean supprimerProduit(String nom){
+    public static boolean supprimerProduit(String nom) {
         return Catalogue.getInstance().removeProduit(nom);
     }
-
-
-
-
-
-
 
 
 }
