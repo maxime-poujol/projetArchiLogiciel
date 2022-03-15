@@ -1,9 +1,13 @@
 package fr.iut.projetArchi.metier.catalogue;
 
+import fr.iut.projetArchi.dao.produit.ProduitDAO;
+import fr.iut.projetArchi.factory.ProduitFactory;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 import fr.iut.projetArchi.metier.produits.Produit;
 import fr.iut.projetArchi.util.Util;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Catalogue implements I_Catalogue{
@@ -15,10 +19,21 @@ public class Catalogue implements I_Catalogue{
     private Catalogue(){
         lesProduits = new ArrayList<>();
     }
+    private static ProduitDAO produitDAO;
 
-    public static Catalogue getInstance() {
+    public static Catalogue getInstance() throws SQLException {
         if (instance == null) {
             instance = new Catalogue();
+            produitDAO = ProduitFactory.getIntance().createProduitDAO();
+            ResultSet rs = produitDAO.findAll();
+            while (rs.next()) {
+                I_Produit produit = new Produit(
+                        rs.getString("nom"),
+                        rs.getInt("prixunitaireht"),
+                        rs.getInt("qtestock")
+                );
+                instance.lesProduits.add(produit);
+            }
         }
         return instance;
     }
