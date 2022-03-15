@@ -1,7 +1,6 @@
 package fr.iut.projetArchi.dao.produit;
 
 import java.sql.*;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 

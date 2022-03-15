@@ -27,7 +27,7 @@ public class CatalogueDAORelationnel implements CatalogueDAO{
     }
 
     @Override
-    public ResultSet find() {
+    public ResultSet find(int id) throws SQLException{
         return null;
     }
 
