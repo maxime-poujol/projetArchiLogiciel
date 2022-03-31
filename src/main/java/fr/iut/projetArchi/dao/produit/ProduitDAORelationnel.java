@@ -29,8 +29,8 @@ public class ProduitDAORelationnel implements ProduitDAO {
         try {
             ps = cn.prepareCall("call insert_produit(?,?,?)");
             ps.setString(1, produit.getNom());
-            ps.setDouble(2, produit.getPrixUnitaireHT());
-            ps.setInt(3, produit.getQuantite());
+            ps.setInt(2, produit.getQuantite());
+            ps.setDouble(3, produit.getPrixUnitaireHT());
             ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,6 +46,7 @@ public class ProduitDAORelationnel implements ProduitDAO {
             ps.setString(1, produit.getNom());
             ps.setDouble(2, produit.getPrixUnitaireHT());
             ps.setInt(3, produit.getQuantite());
+            ps.setString(4, produit.getNom());
             ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
