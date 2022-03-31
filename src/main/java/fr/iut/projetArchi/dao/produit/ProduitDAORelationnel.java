@@ -1,8 +1,11 @@
 package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
+import fr.iut.projetArchi.metier.produits.Produit;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProduitDAORelationnel implements ProduitDAO {
 
@@ -67,20 +70,26 @@ public class ProduitDAORelationnel implements ProduitDAO {
     }
 
     @Override
-    public ResultSet findAll() {
-        PreparedStatement ps;
-        ResultSet rs = null;
+    public List<I_Produit> findAll() {
+        List<I_Produit> produits = new ArrayList<>();
         try {
-            ps = requetePrepare("SELECT * FROM Produits");
-            rs = ps.executeQuery();
+            PreparedStatement ps = requetePrepare("SELECT * FROM Produits");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                I_Produit produit = new Produit(
+                        rs.getString("nom"),
+                        rs.getInt("prixunitaireht"),
+                        rs.getInt("qtestock"));
+                produits.add(produit);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rs;
+        return produits;
     }
 
     @Override
-    public ResultSet find(String nom) {
+    public I_Produit find(String nom) {
         return null;
     }
 }

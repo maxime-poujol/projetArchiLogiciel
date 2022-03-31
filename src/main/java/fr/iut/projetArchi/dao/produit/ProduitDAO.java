@@ -3,6 +3,7 @@ package fr.iut.projetArchi.dao.produit;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 
 public interface ProduitDAO {
@@ -19,15 +20,21 @@ public interface ProduitDAO {
     void update(I_Produit produit);
 
     /**
-     * @param nom
+     *
+     * @param produit
      */
     void delete(I_Produit produit);
 
     /**
      * @return
      */
-    ResultSet findAll();
+    List<I_Produit> findAll();
 
-    ResultSet find(String nom);
+    /**
+     *
+     * @param nom
+     * @return
+     */
+    I_Produit find(String nom);
 
 }

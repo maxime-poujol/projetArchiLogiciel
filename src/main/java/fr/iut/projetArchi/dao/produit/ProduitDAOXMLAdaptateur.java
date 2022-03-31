@@ -1,8 +1,7 @@
 package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
-import java.sql.ResultSet;
-
+import java.util.List;
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
@@ -29,12 +28,12 @@ public class ProduitDAOXMLAdaptateur implements ProduitDAO {
     }
 
     @Override
-    public ResultSet findAll(){
-        return null;
+    public List<I_Produit> findAll(){
+        return produitDAO_xml.lireTous();
     }
 
     @Override
-    public ResultSet find(String nom) {
-        return null;
+    public I_Produit find(String nom) {
+        return produitDAO_xml.lire(nom);
     }
 }
