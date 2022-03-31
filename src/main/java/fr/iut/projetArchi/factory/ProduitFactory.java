@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class ProduitFactory {
 
-    private ProduitFactory intance;
+    private static ProduitFactory intance;
 
     private ProduitFactory() {
 
@@ -39,7 +39,7 @@ public class ProduitFactory {
 
     }
 
-    public ProduitFactory getIntance() {
+    public static ProduitFactory getIntance() {
         if (intance == null){
             return new ProduitFactory();
         }
