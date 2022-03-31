@@ -2,7 +2,7 @@ package fr.iut.projetArchi.factory;
 
 import fr.iut.projetArchi.dao.produit.ProduitDAO;
 import fr.iut.projetArchi.dao.produit.ProduitDAORelationnel;
-import fr.iut.projetArchi.dao.produit.ProduitDAOXML;
+import fr.iut.projetArchi.dao.produit.ProduitDAOXMLAdaptateur;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class ProduitFactory {
 
             return switch (prop.getProperty("db")) {
                 case "relationnel" -> new ProduitDAORelationnel();
-                case "xml" -> new ProduitDAOXML();
+                case "xml" -> new ProduitDAOXMLAdaptateur();
                 default -> null;
             };
 
