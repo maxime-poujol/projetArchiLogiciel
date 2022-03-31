@@ -1,11 +1,7 @@
 package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
-import fr.iut.projetArchi.metier.produits.Produit;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
@@ -27,17 +23,16 @@ public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
     @Override
     public void delete(I_Produit produit) {
-
         produitDAO_xml.supprimer(produit);
     }
 
     @Override
-    public ResultSet findAll(){
-        return null;
+    public List<I_Produit> findAll(){
+        return produitDAO_xml.lireTous();
     }
 
     @Override
-    public ResultSet find(String nom) {
-        return null;
+    public I_Produit find(String nom) {
+        return produitDAO_xml.lire(nom);
     }
 }
