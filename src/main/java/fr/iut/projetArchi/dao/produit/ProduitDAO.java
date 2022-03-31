@@ -1,6 +1,40 @@
 package fr.iut.projetArchi.dao.produit;
 
-import fr.iut.projetArchi.dao.I_DAO;
+import fr.iut.projetArchi.metier.produits.I_Produit;
 
-public interface ProduitDAO extends I_DAO {
+import java.sql.ResultSet;
+import java.util.List;
+
+
+public interface ProduitDAO {
+
+    /**
+     *
+     * @param produit
+     */
+    void create(I_Produit produit);
+
+    /**
+     * @param produit
+     */
+    void update(I_Produit produit);
+
+    /**
+     *
+     * @param produit
+     */
+    void delete(I_Produit produit);
+
+    /**
+     * @return
+     */
+    List<I_Produit> findAll();
+
+    /**
+     *
+     * @param nom
+     * @return
+     */
+    I_Produit find(String nom);
+
 }

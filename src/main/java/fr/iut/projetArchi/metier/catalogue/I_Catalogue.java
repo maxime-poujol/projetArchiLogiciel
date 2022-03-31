@@ -2,6 +2,7 @@ package fr.iut.projetArchi.metier.catalogue;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface I_Catalogue {
