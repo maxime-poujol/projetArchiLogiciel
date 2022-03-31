@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
@@ -62,7 +63,7 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
             } catch (NumberFormatException exception) {
                 exception.printStackTrace();
-            }finally {
+            } finally {
                 System.out.println("Au revoir");
                 this.dispose();
             }

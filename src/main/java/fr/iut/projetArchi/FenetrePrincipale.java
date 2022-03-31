@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 
 public class FenetrePrincipale extends JFrame implements ActionListener, WindowListener {
 
@@ -66,7 +67,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
         btVente.addActionListener(this);
         btQuitter.addActionListener(this);
 
-        fixtures();
+//        fixtures();
 
         addWindowListener(this);
         setVisible(true);
@@ -85,13 +86,21 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 
         if (e.getSource() == btAfficher) {
-            StockController.openWindowStock();
+            try {
+                StockController.openWindowStock();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         if (e.getSource() == btNouveauProduit) {
             CatalogueController.openWindowAjoutProduit();
         }
         if (e.getSource() == btSupprimerProduit) {
-            CatalogueController.openWindowSupprimerProduit();
+            try {
+                CatalogueController.openWindowSupprimerProduit();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 //		if (e.getSource() == btSupprimerCategorie)
 //			new FenetreSuppressionCategorie(tabCategories);
@@ -130,12 +139,12 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
     public void windowOpened(WindowEvent arg0) {
     }
 
-    public void fixtures(){
-        Catalogue.getInstance().addProduit("Mars", 15, 2);
-        Catalogue.getInstance().addProduit("Twix", 10, 6);
-        Catalogue.getInstance().addProduit("M&M's", 8, 1);
-        Catalogue.getInstance().addProduit("Bounty", 4, 2);
-        Catalogue.getInstance().addProduit("Treets", 11, 2);
-    }
+//    public void fixtures(){
+//        Catalogue.getInstance().addProduit("Mars", 15, 2);
+//        Catalogue.getInstance().addProduit("Twix", 10, 6);
+//        Catalogue.getInstance().addProduit("M&M's", 8, 1);
+//        Catalogue.getInstance().addProduit("Bounty", 4, 2);
+//        Catalogue.getInstance().addProduit("Treets", 11, 2);
+//    }
 
 }

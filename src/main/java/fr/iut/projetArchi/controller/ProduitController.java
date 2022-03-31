@@ -4,6 +4,8 @@ import fr.iut.projetArchi.FenetreAchat;
 import fr.iut.projetArchi.FenetreVente;
 import fr.iut.projetArchi.metier.catalogue.Catalogue;
 
+import java.sql.SQLException;
+
 public class ProduitController {
 
     public static void openWindowAchatProduit() {
@@ -14,7 +16,7 @@ public class ProduitController {
         new FenetreVente(Catalogue.getInstance().getNomProduits());
     }
 
-    public static boolean acheterProduit(String nom, int qte) {
+    public static boolean acheterProduit(String nom, int qte){
         return Catalogue.getInstance().acheterStock(nom,qte);
     }
 

@@ -19,21 +19,25 @@ public class Catalogue implements I_Catalogue{
     private Catalogue(){
         lesProduits = new ArrayList<>();
     }
-    private static ProduitDAO produitDAO;
 
-    public static Catalogue getInstance() throws SQLException {
+    public static Catalogue getInstance() {
         if (instance == null) {
             instance = new Catalogue();
             produitDAO = ProduitFactory.getIntance().createProduitDAO();
-            ResultSet rs = produitDAO.findAll();
-            while (rs.next()) {
-                I_Produit produit = new Produit(
-                        rs.getString("nom"),
-                        rs.getInt("prixunitaireht"),
-                        rs.getInt("qtestock")
-                );
-                instance.lesProduits.add(produit);
+            ResultSet rs;
+            try {
+                rs = produitDAO.findAll();
+                while (rs.next()) {
+                    I_Produit produit = new Produit(
+                            rs.getString("nom"),
+                            rs.getInt("prixunitaireht"),
+                            rs.getInt("qtestock"));
+                    instance.lesProduits.add(produit);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+
         }
         return instance;
     }
@@ -61,6 +65,8 @@ public class Catalogue implements I_Catalogue{
                 return false;
             }
         }
+        produitDAO.create(produit);
+
         return lesProduits.add(produit);
 
     }
@@ -87,6 +93,7 @@ public class Catalogue implements I_Catalogue{
 
     @Override
     public boolean removeProduit(String nom) {
+        produitDAO.delete(nom);
         return lesProduits.removeIf(i_produit -> Objects.equals(i_produit.getNom(), nom));
     }
 
@@ -96,7 +103,11 @@ public class Catalogue implements I_Catalogue{
         if (product == null) {
             return false;
         }
-        return product.ajouter(qteAchetee);
+        boolean bool = product.ajouter(qteAchetee);
+        if (bool) {
+            produitDAO.update(product);
+        }
+        return bool;
     }
 
     @Override
@@ -106,7 +117,13 @@ public class Catalogue implements I_Catalogue{
         if (product == null) {
             return false;
         }
-        return product.enlever(qteVendue);
+        boolean bool = product.enlever(qteVendue);
+
+        if (bool) {
+            produitDAO.update(product);
+        }
+
+        return bool;
     }
 
     @Override
@@ -149,7 +166,8 @@ public class Catalogue implements I_Catalogue{
            // double prixHT = Util.doubleDeuxChiffreApresVirgule();
             //double prixTTC = Util.doubleDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC());
             //s.append(produit.getNom()).append(" - prix HT : ").append(Util.formatDoubleNumber(prixHT)).append(" € - prix TTC : ").append(Util.formatDoubleNumber(prixTTC)).append(" € - quantité en stock : ").append(produit.getQuantite()).append("\n");
-            s.append(produit.getNom()).append(" - prix HT : ")
+            s.append(produit.getNom())
+                    .append(" - prix HT : ")
                     .append(Util.frStringDeuxChiffreApresVirgule(produit.getPrixUnitaireHT()))
                     .append(" € - prix TTC : ")
                     .append(Util.frStringDeuxChiffreApresVirgule(produit.getPrixUnitaireTTC()))

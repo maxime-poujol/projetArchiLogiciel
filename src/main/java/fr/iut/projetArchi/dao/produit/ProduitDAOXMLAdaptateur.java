@@ -30,14 +30,4 @@ public class ProduitDAOXMLAdaptateur implements ProduitDAO {
     public ResultSet find(int id) throws SQLException {
         return null;
     }
-
-    @Override
-    public String nameTable() {
-        return null;
-    }
-
-    @Override
-    public String idTable() {
-        return null;
-    }
 }
