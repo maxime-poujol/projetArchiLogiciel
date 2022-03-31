@@ -12,8 +12,6 @@ public class Catalogue implements I_Catalogue {
     private List<I_Produit> lesProduits;
     private static ProduitDAO produitDAO;
 
-    private static Catalogue instance;
-
     public Catalogue() {
         lesProduits = new ArrayList<>();
         produitDAO = ProduitFactory.getIntance().createProduitDAO();

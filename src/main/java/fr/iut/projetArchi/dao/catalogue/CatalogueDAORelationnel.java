@@ -1,43 +1,37 @@
 package fr.iut.projetArchi.dao.catalogue;
 
+import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
+import fr.iut.projetArchi.metier.produits.I_Produit;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 public class CatalogueDAORelationnel implements CatalogueDAO{
 
     @Override
-    public void create(Map<String, Object> values) throws SQLException {
+    public void create(I_Catalogue catalogue){
 
     }
 
     @Override
-    public void update(Map<String, Object> values) throws SQLException {
+    public void update(I_Catalogue catalogue) {
 
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(I_Catalogue catalogue){
 
     }
 
     @Override
-    public ResultSet findAll() {
+    public List<I_Catalogue> findAll() {
         return null;
     }
 
     @Override
-    public ResultSet find(int id) throws SQLException{
+    public I_Catalogue find(String nom){
         return null;
-    }
-
-    @Override
-    public String nameTable() {
-        return "Catalogue";
-    }
-
-    @Override
-    public String idTable() {
-        return "idCatalogue";
     }
 }

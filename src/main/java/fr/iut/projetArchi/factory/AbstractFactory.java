@@ -8,7 +8,6 @@ import java.util.Properties;
 
 public abstract class AbstractFactory implements Factory{
 
-
     private static Factory instance;
 
     protected AbstractFactory(){}
@@ -21,9 +20,9 @@ public abstract class AbstractFactory implements Factory{
                 prop.load(input);
 
                 // get the property value and print it out
-                System.out.println(prop.getProperty("db.url"));
-                System.out.println(prop.getProperty("db.user"));
-                System.out.println(prop.getProperty("db.password"));
+                //System.out.println(prop.getProperty("db.url"));
+                //System.out.println(prop.getProperty("db.user"));
+                //System.out.println(prop.getProperty("db.password"));
 
                 switch (prop.getProperty("db")){
                     case "relationnel" -> instance = new RelationnelFactory();
