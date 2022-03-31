@@ -21,7 +21,7 @@ public interface ProduitDAO {
     /**
      * @param nom
      */
-    void delete(String nom);
+    void delete(I_Produit produit);
 
     /**
      * @return

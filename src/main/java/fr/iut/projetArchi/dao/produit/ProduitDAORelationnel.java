@@ -3,12 +3,9 @@ package fr.iut.projetArchi.dao.produit;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProduitDAORelationnel implements ProduitDAO {
 
-    private ResultSet rs;
     private Connection cn;
 
     public ProduitDAORelationnel() {
@@ -57,7 +54,7 @@ public class ProduitDAORelationnel implements ProduitDAO {
     }
 
     @Override
-    public void delete(String nom) {
+    public void delete(I_Produit produit) {
         PreparedStatement ps;
         try {
             ps = requetePrepare("DELETE FROM Produits WHERE nom = ?");

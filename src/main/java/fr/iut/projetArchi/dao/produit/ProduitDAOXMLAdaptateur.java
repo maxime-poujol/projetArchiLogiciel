@@ -1,33 +1,43 @@
 package fr.iut.projetArchi.dao.produit;
 
+import fr.iut.projetArchi.metier.produits.I_Produit;
+import fr.iut.projetArchi.metier.produits.Produit;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
-    @Override
-    public void create(Map<String, Object> values) throws SQLException {
+    private ProduitDAO_XML produitDAO_xml;
 
+    public ProduitDAOXMLAdaptateur(){
+        produitDAO_xml = new ProduitDAO_XML();
     }
 
     @Override
-    public void update(Map<String, Object> values) throws SQLException {
-
+    public void create(I_Produit produit){
+        produitDAO_xml.creer(produit);
     }
 
     @Override
-    public void delete(int id) throws SQLException {
-
+    public void update(I_Produit produit){
+        produitDAO_xml.maj(produit);
     }
 
     @Override
-    public ResultSet findAll() throws SQLException {
+    public void delete(I_Produit produit) {
+
+        produitDAO_xml.supprimer(produit);
+    }
+
+    @Override
+    public ResultSet findAll(){
         return null;
     }
 
     @Override
-    public ResultSet find(int id) throws SQLException {
+    public ResultSet find(String nom) {
         return null;
     }
 }

@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class ProduitController {
 
-    public static void openWindowAchatProduit() {
+    public static void openWindowAchatProduit(){
         new FenetreAchat(Catalogue.getInstance().getNomProduits());
     }
 
-    public static void openWindowVenteProduit() {
+    public static void openWindowVenteProduit(){
         new FenetreVente(Catalogue.getInstance().getNomProduits());
     }
 
@@ -20,7 +20,7 @@ public class ProduitController {
         return Catalogue.getInstance().acheterStock(nom,qte);
     }
 
-    public static boolean vendreProduit(String nom, int qte) {
+    public static boolean vendreProduit(String nom, int qte){
         return Catalogue.getInstance().vendreStock(nom,qte);
     }
 }
