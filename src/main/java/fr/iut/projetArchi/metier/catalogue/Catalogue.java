@@ -94,7 +94,7 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean removeProduit(String nom) {
-        produitDAO.delete(nom);
+        produitDAO.delete(getProductByName(nom));
         return lesProduits.removeIf(i_produit -> Objects.equals(i_produit.getNom(), nom));
     }
 

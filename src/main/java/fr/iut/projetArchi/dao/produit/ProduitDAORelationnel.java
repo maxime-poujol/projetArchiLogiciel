@@ -58,7 +58,7 @@ public class ProduitDAORelationnel implements ProduitDAO {
         PreparedStatement ps;
         try {
             ps = requetePrepare("DELETE FROM Produits WHERE nom = ?");
-            ps.setString(1, nom);
+            ps.setString(1, produit.getNom());
             ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
