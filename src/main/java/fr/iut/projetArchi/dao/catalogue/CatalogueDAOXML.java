@@ -1,43 +1,34 @@
 package fr.iut.projetArchi.dao.catalogue;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
+import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
+
+import java.util.List;
 
 public class CatalogueDAOXML implements CatalogueDAO{
 
+
     @Override
-    public void create(Map<String, Object> values) throws SQLException {
+    public void create(I_Catalogue catalogue) {
 
     }
 
     @Override
-    public void update(Map<String, Object> values) throws SQLException {
+    public void update(I_Catalogue catalogue) {
 
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(I_Catalogue catalogue) {
 
     }
 
     @Override
-    public ResultSet findAll() {
+    public List<I_Catalogue> findAll() {
         return null;
     }
 
     @Override
-    public ResultSet find(int id) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public String nameTable() {
-        return null;
-    }
-
-    @Override
-    public String idTable() {
+    public I_Catalogue find(String nom) {
         return null;
     }
 }

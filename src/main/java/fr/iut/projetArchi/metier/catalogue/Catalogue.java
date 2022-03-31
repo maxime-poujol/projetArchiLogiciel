@@ -5,9 +5,6 @@ import fr.iut.projetArchi.factory.ProduitFactory;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 import fr.iut.projetArchi.metier.produits.Produit;
 import fr.iut.projetArchi.util.Util;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class Catalogue implements I_Catalogue {
@@ -17,19 +14,11 @@ public class Catalogue implements I_Catalogue {
 
     private static Catalogue instance;
 
-    private Catalogue() {
+    public Catalogue() {
         lesProduits = new ArrayList<>();
-    }
-
-    public static Catalogue getInstance() {
-        if (instance == null) {
-            instance = new Catalogue();
-            produitDAO = ProduitFactory.getIntance().createProduitDAO();
-            List<I_Produit> result = produitDAO.findAll();
-            instance.lesProduits.addAll(result);
-
-        }
-        return instance;
+        produitDAO = ProduitFactory.getIntance().createProduitDAO();
+        List<I_Produit> result = produitDAO.findAll();
+        lesProduits.addAll(result);
     }
 
     private I_Produit getProductByName(String name) {
