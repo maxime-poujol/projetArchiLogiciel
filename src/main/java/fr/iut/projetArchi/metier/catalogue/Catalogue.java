@@ -25,19 +25,8 @@ public class Catalogue implements I_Catalogue {
         if (instance == null) {
             instance = new Catalogue();
             produitDAO = ProduitFactory.getIntance().createProduitDAO();
-            ResultSet rs;
-            try {
-                rs = produitDAO.findAll();
-                while (rs.next()) {
-                    I_Produit produit = new Produit(
-                            rs.getString("nom"),
-                            rs.getInt("prixunitaireht"),
-                            rs.getInt("qtestock"));
-                    instance.lesProduits.add(produit);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            List<I_Produit> result = produitDAO.findAll();
+            instance.lesProduits.addAll(result);
 
         }
         return instance;
