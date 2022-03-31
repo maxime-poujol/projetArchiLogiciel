@@ -1,11 +1,8 @@
 package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
-import fr.iut.projetArchi.metier.produits.Produit;
-
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
+
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
