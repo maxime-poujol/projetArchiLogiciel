@@ -2,16 +2,13 @@ package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 
 public interface ProduitDAO {
 
 
-
     /**
-     *
      * @param produit
      */
     void create(I_Produit produit);
@@ -22,7 +19,6 @@ public interface ProduitDAO {
     void update(I_Produit produit);
 
     /**
-     *
      * @param produit
      */
     void delete(I_Produit produit);
@@ -33,7 +29,6 @@ public interface ProduitDAO {
     List<I_Produit> findAll();
 
     /**
-     *
      * @param nom
      * @return
      */

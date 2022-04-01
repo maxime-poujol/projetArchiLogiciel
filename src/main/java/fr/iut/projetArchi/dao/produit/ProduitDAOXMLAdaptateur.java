@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
-    private ProduitDAO_XML produitDAO_xml;
+    private final ProduitDAO_XML produitDAO_xml;
 
     public ProduitDAOXMLAdaptateur() {
         produitDAO_xml = new ProduitDAO_XML();

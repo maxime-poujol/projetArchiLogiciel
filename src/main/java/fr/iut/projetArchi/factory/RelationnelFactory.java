@@ -13,7 +13,7 @@ public class RelationnelFactory extends AbstractFactory {
 
     private Connection connection;
 
-    public RelationnelFactory(){
+    public RelationnelFactory() {
 //        cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "poujolm", "071563154FB");
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");

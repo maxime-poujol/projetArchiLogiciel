@@ -13,9 +13,9 @@ import java.util.Objects;
 
 public class Catalogue implements I_Catalogue {
 
-    private List<I_Produit> lesProduits;
     private static ProduitDAO produitDAO;
-    private String nom;
+    private final List<I_Produit> lesProduits;
+    private final String nom;
 
     public Catalogue(String nom) {
         this.nom = nom;

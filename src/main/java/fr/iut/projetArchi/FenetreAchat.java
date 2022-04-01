@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class FenetreAchat extends JFrame implements ActionListener {
 
@@ -38,7 +37,7 @@ public class FenetreAchat extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btAchat){
+        if (e.getSource() == btAchat) {
             ProduitController.acheterProduit(combo.getSelectedItem().toString(), Integer.parseInt(txtQuantite.getText()));
         }
 

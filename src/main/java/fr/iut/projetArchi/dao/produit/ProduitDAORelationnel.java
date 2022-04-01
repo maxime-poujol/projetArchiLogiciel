@@ -3,13 +3,16 @@ package fr.iut.projetArchi.dao.produit;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 import fr.iut.projetArchi.metier.produits.Produit;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitDAORelationnel implements ProduitDAO {
 
-    private Connection connection;
+    private final Connection connection;
 
     public ProduitDAORelationnel(Connection connection) {
         this.connection = connection;

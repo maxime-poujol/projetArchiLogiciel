@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class FenetreSuppressionProduit extends JFrame implements ActionListener {
@@ -34,7 +33,7 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == btSupprimer){
+        if (e.getSource() == btSupprimer) {
             System.out.println("btn supprimer");
             CatalogueController.supprimerProduit(Objects.requireNonNull(combo.getSelectedItem()).toString());
             System.out.println("Au revoir");

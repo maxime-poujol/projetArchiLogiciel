@@ -4,7 +4,7 @@ import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
 
 import java.util.List;
 
-public class CatalogueDAOXML implements CatalogueDAO{
+public class CatalogueDAOXML implements CatalogueDAO {
 
     @Override
     public void create(I_Catalogue catalogue) {

@@ -2,14 +2,12 @@ package fr.iut.projetArchi.dao.catalogue;
 
 
 import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
-import fr.iut.projetArchi.metier.produits.I_Produit;
 
 import java.util.List;
 
 public interface CatalogueDAO {
 
     /**
-     *
      * @param produit
      */
     void create(I_Catalogue catalogue);
@@ -20,7 +18,6 @@ public interface CatalogueDAO {
     void update(I_Catalogue catalogue);
 
     /**
-     *
      * @param produit
      */
     void delete(I_Catalogue catalogue);
@@ -31,7 +28,6 @@ public interface CatalogueDAO {
     List<I_Catalogue> findAll();
 
     /**
-     *
      * @param nom
      * @return
      */

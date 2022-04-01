@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Produit implements I_Produit {
 
+    private static final float tauxTVA = 0.2f;
     private int quantiteStock;
-    private String nom;
-    private double prixUnitaireHT;
-    private static float tauxTVA = 0.2f;
+    private final String nom;
+    private final double prixUnitaireHT;
 
     public Produit(String nom, double prixUnitaireHT, int quantiteStock) {
         this.quantiteStock = quantiteStock;

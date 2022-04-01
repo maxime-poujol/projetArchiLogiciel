@@ -17,11 +17,11 @@ public class CatalogueController {
         new FenetreSuppressionProduit(Catalogue.getInstance().getNomProduits());
     }
 
-    public static boolean ajouterProduit(String nom, double prixHT, int quantite){
+    public static boolean ajouterProduit(String nom, double prixHT, int quantite) {
         return Catalogue.getInstance().addProduit(nom, prixHT, quantite);
     }
 
-    public static boolean supprimerProduit(String nom){
+    public static boolean supprimerProduit(String nom) {
         return Catalogue.getInstance().removeProduit(nom);
     }
 
