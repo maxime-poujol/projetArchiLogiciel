@@ -1,23 +1,24 @@
 package fr.iut.projetArchi.dao.produit;
 
 import fr.iut.projetArchi.metier.produits.I_Produit;
+
 import java.util.List;
 
 public class ProduitDAOXMLAdaptateur implements ProduitDAO {
 
     private ProduitDAO_XML produitDAO_xml;
 
-    public ProduitDAOXMLAdaptateur(){
+    public ProduitDAOXMLAdaptateur() {
         produitDAO_xml = new ProduitDAO_XML();
     }
 
     @Override
-    public void create(I_Produit produit){
+    public void create(I_Produit produit) {
         produitDAO_xml.creer(produit);
     }
 
     @Override
-    public void update(I_Produit produit){
+    public void update(I_Produit produit) {
         produitDAO_xml.maj(produit);
     }
 
@@ -27,7 +28,7 @@ public class ProduitDAOXMLAdaptateur implements ProduitDAO {
     }
 
     @Override
-    public List<I_Produit> findAll(){
+    public List<I_Produit> findAll() {
         return produitDAO_xml.lireTous();
     }
 

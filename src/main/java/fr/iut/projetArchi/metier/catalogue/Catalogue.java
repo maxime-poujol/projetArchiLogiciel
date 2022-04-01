@@ -1,20 +1,27 @@
 package fr.iut.projetArchi.metier.catalogue;
 
 import fr.iut.projetArchi.dao.produit.ProduitDAO;
-import fr.iut.projetArchi.factory.ProduitFactory;
+import fr.iut.projetArchi.factory.AbstractFactory;
 import fr.iut.projetArchi.metier.produits.I_Produit;
 import fr.iut.projetArchi.metier.produits.Produit;
 import fr.iut.projetArchi.util.Util;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class Catalogue implements I_Catalogue {
 
     private List<I_Produit> lesProduits;
     private static ProduitDAO produitDAO;
+    private String nom;
 
-    public Catalogue() {
+    public Catalogue(String nom) {
+        this.nom = nom;
+
         lesProduits = new ArrayList<>();
-        produitDAO = ProduitFactory.getIntance().createProduitDAO();
+        produitDAO = AbstractFactory.getInstance().createProduitDAO();
         List<I_Produit> result = produitDAO.findAll();
         lesProduits.addAll(result);
     }

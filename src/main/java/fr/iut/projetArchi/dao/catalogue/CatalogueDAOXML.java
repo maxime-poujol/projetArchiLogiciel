@@ -6,7 +6,6 @@ import java.util.List;
 
 public class CatalogueDAOXML implements CatalogueDAO{
 
-
     @Override
     public void create(I_Catalogue catalogue) {
 

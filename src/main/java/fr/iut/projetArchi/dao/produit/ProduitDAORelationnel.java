@@ -9,28 +9,28 @@ import java.util.List;
 
 public class ProduitDAORelationnel implements ProduitDAO {
 
-    private Connection cn;
+    private Connection connection;
 
-    public ProduitDAORelationnel() {
-//            cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "poujolm", "071563154FB");
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "naberte", "040010611EG");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public ProduitDAORelationnel(Connection connection) {
+        this.connection = connection;
+//        try {
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            cn = DriverManager.getConnection("jdbc:oracle:thin:@162.38.222.149:1521:iut", "naberte", "040010611EG");
+//
+//        } catch (SQLException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private PreparedStatement requetePrepare(String sql) throws SQLException {
-        return cn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        return connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
     }
 
     @Override
     public void create(I_Produit produit) {
         PreparedStatement ps;
         try {
-            ps = cn.prepareCall("call insert_produit(?,?,?)");
+            ps = connection.prepareCall("call insert_produit(?,?,?)");
             ps.setString(1, produit.getNom());
             ps.setInt(2, produit.getQuantite());
             ps.setDouble(3, produit.getPrixUnitaireHT());
