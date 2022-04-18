@@ -2,23 +2,22 @@ package fr.iut.projetArchi.controller;
 
 import fr.iut.projetArchi.FenetreAchat;
 import fr.iut.projetArchi.FenetreVente;
-import fr.iut.projetArchi.metier.catalogue.Catalogue;
 
 public class ProduitController {
 
     public static void openWindowAchatProduit() {
-        new FenetreAchat(Catalogue.getInstance().getNomProduits());
+        new FenetreAchat(CatalogueController.getCurrentCatalogue().getNomProduits());
     }
 
     public static void openWindowVenteProduit() {
-        new FenetreVente(Catalogue.getInstance().getNomProduits());
+        new FenetreVente(CatalogueController.getCurrentCatalogue().getNomProduits());
     }
 
     public static boolean acheterProduit(String nom, int qte) {
-        return Catalogue.getInstance().acheterStock(nom, qte);
+        return CatalogueController.getCurrentCatalogue().acheterStock(nom, qte);
     }
 
     public static boolean vendreProduit(String nom, int qte) {
-        return Catalogue.getInstance().vendreStock(nom, qte);
+        return CatalogueController.getCurrentCatalogue().vendreStock(nom, qte);
     }
 }

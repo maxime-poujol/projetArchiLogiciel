@@ -9,7 +9,7 @@ public class StockController {
 
 
     public static void openWindowStock() throws SQLException {
-        new FenetreAffichage(Catalogue.getInstance().toString());
+        new FenetreAffichage(CatalogueController.getCurrentCatalogue().toString());
     }
 
 

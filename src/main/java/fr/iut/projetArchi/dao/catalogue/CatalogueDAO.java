@@ -8,17 +8,17 @@ import java.util.List;
 public interface CatalogueDAO {
 
     /**
-     * @param produit
+     * @param catalogue
      */
     void create(I_Catalogue catalogue);
 
     /**
-     * @param produit
+     * @param catalogue
      */
     void update(I_Catalogue catalogue);
 
     /**
-     * @param produit
+     * @param catalogue
      */
     void delete(I_Catalogue catalogue);
 

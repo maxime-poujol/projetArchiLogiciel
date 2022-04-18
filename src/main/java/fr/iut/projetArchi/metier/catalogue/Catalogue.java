@@ -26,6 +26,16 @@ public class Catalogue implements I_Catalogue {
         lesProduits.addAll(result);
     }
 
+    @Override
+    public String getNom() {
+        return nom;
+    }
+
+    @Override
+    public int getNbProduits() {
+        return lesProduits.size();
+    }
+
     private I_Produit getProductByName(String name) {
         for (I_Produit produit : lesProduits) {
             if (produit.getNom().equals(name)) {

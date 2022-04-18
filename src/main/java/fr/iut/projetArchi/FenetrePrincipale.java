@@ -138,12 +138,4 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
     public void windowOpened(WindowEvent arg0) {
     }
 
-//    public void fixtures(){
-//        Catalogue.getInstance().addProduit("Mars", 15, 2);
-//        Catalogue.getInstance().addProduit("Twix", 10, 6);
-//        Catalogue.getInstance().addProduit("M&M's", 8, 1);
-//        Catalogue.getInstance().addProduit("Bounty", 4, 2);
-//        Catalogue.getInstance().addProduit("Treets", 11, 2);
-//    }
-
 }

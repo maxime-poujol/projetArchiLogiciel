@@ -12,7 +12,7 @@
 //
 //public class TestCatalogue {
 //
-//	I_Catalogue cat = Catalogue.getInstance();
+//	I_Catalogue cat = CatalogueController.getCurrentCatalogue();
 //
 //	@Before
 //	public void setUp() {

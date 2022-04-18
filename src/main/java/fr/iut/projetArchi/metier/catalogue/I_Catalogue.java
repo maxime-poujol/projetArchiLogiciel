@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface I_Catalogue {
 
+    String getNom();
+
+    int getNbProduits();
+
     boolean addProduit(I_Produit produit);
 
     boolean addProduit(String nom, double prix, int qte);
