@@ -33,10 +33,12 @@ public class ProduitDAORelationnel implements ProduitDAO {
     public void create(I_Produit produit) {
         PreparedStatement ps;
         try {
-            ps = connection.prepareCall("call insert_produit(?,?,?)");
+            ps = connection.prepareCall("call insert_produit(?,?,?,?)");
+            System.out.println(produit.getNomCatalogue());
             ps.setString(1, produit.getNom());
             ps.setInt(2, produit.getQuantite());
             ps.setDouble(3, produit.getPrixUnitaireHT());
+            ps.setString(4, produit.getNomCatalogue());
             ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,8 +66,9 @@ public class ProduitDAORelationnel implements ProduitDAO {
     public void delete(I_Produit produit) {
         PreparedStatement ps;
         try {
-            ps = requetePrepare("DELETE FROM Produits WHERE nom = ?");
+            ps = requetePrepare("DELETE FROM Produits WHERE nom = ? AND nomCatalogue = ?");
             ps.setString(1, produit.getNom());
+            ps.setString(2, produit.getNomCatalogue());
             ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,7 +85,8 @@ public class ProduitDAORelationnel implements ProduitDAO {
                 I_Produit produit = new Produit(
                         rs.getString("nom"),
                         rs.getInt("prixunitaireht"),
-                        rs.getInt("qtestock"));
+                        rs.getInt("qtestock"),
+                        rs.getString("nomcatalogue"));
                 produits.add(produit);
             }
         } catch (SQLException e) {
@@ -94,5 +98,29 @@ public class ProduitDAORelationnel implements ProduitDAO {
     @Override
     public I_Produit find(String nom) {
         return null;
+    }
+
+    @Override
+    public List<I_Produit> findByCatalogue(String catalogueName) {
+
+        List<I_Produit> produits = new ArrayList<>();
+        try {
+            PreparedStatement ps = requetePrepare("SELECT p.nom,prixunitaireht,qtestock,nomCatalogue FROM Produits p JOIN Catalogues c ON c.nom = p.nomCatalogue WHERE c.nom = ?");
+            ps.setString(1,catalogueName);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                I_Produit produit = new Produit(
+                        rs.getString("nom"),
+                        rs.getInt("prixunitaireht"),
+                        rs.getInt("qtestock"),
+                        rs.getString("nomcatalogue"));
+                produits.add(produit);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return produits;
     }
 }

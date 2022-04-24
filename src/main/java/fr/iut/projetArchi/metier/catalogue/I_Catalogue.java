@@ -30,4 +30,5 @@ public interface I_Catalogue {
 
     void clear();
 
+    void updateListeProduits();
 }

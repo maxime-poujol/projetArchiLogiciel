@@ -30,4 +30,9 @@ public class CatalogueDAOXML implements CatalogueDAO {
     public I_Catalogue find(String nom) {
         return null;
     }
+
+    @Override
+    public int getNbProduits(I_Catalogue catalogue) {
+        return 0;
+    }
 }

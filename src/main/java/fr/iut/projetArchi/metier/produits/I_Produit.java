@@ -7,6 +7,7 @@ public interface I_Produit {
     boolean enlever(int qteVendue);
 
     String getNom();
+    String getNomCatalogue();
 
     int getQuantite();
 
@@ -15,6 +16,8 @@ public interface I_Produit {
     double getPrixUnitaireTTC();
 
     double getPrixStockTTC();
+
+    int getIdCatalogue();
 
     String toString();
 

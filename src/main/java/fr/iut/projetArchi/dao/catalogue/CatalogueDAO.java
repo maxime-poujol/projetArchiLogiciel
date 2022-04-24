@@ -33,4 +33,5 @@ public interface CatalogueDAO {
      */
     I_Catalogue find(String nom);
 
+    int getNbProduits(I_Catalogue catalogue);
 }

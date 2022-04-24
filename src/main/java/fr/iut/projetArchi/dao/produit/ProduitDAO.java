@@ -34,4 +34,5 @@ public interface ProduitDAO {
      */
     I_Produit find(String nom);
 
+    List<I_Produit> findByCatalogue(String catalogueName);
 }

@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Catalogue implements I_Catalogue {
 
     private static ProduitDAO produitDAO;
-    private final List<I_Produit> lesProduits;
+    private List<I_Produit> lesProduits;
     private final String nom;
 
     public Catalogue(String nom) {
@@ -22,8 +22,6 @@ public class Catalogue implements I_Catalogue {
 
         lesProduits = new ArrayList<>();
         produitDAO = AbstractFactory.getInstance().createProduitDAO();
-        List<I_Produit> result = produitDAO.findAll();
-        lesProduits.addAll(result);
     }
 
     @Override
@@ -52,7 +50,7 @@ public class Catalogue implements I_Catalogue {
         if (produit.getPrixUnitaireHT() <= 0) return false;
         if (produit.getQuantite() < 0) return false;
         String nom = Util.formatNom(produit.getNom());
-        produit = new Produit(nom, produit.getPrixUnitaireHT(), produit.getQuantite());
+        produit = new Produit(nom, produit.getPrixUnitaireHT(), produit.getQuantite(), this.nom);
 
         for (I_Produit p : lesProduits) {
             if (p.equals(produit)) {
@@ -67,7 +65,7 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
-        return addProduit(new Produit(nom, prix, qte));
+        return addProduit(new Produit(nom, prix, qte, this.nom));
     }
 
     @Override
@@ -175,5 +173,10 @@ public class Catalogue implements I_Catalogue {
                 .append(" €");
 
         return s.toString();
+    }
+
+    @Override
+    public void updateListeProduits() {
+        lesProduits = produitDAO.findByCatalogue(nom);
     }
 }

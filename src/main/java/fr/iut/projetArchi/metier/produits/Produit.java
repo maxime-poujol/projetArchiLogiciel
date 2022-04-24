@@ -9,10 +9,18 @@ public class Produit implements I_Produit {
     private final String nom;
     private final double prixUnitaireHT;
 
-    public Produit(String nom, double prixUnitaireHT, int quantiteStock) {
+    private String nomCatalogue;
+
+    @Override
+    public String getNomCatalogue() {
+        return nomCatalogue;
+    }
+
+    public Produit(String nom, double prixUnitaireHT, int quantiteStock, String nomCatalogue) {
         this.quantiteStock = quantiteStock;
         this.nom = nom;
         this.prixUnitaireHT = prixUnitaireHT;
+        this.nomCatalogue = nomCatalogue;
     }
 
     @Override
@@ -54,6 +62,11 @@ public class Produit implements I_Produit {
     @Override
     public double getPrixStockTTC() {
         return getPrixUnitaireTTC() * quantiteStock;
+    }
+
+    @Override
+    public int getIdCatalogue() {
+        return 0;
     }
 
     @Override

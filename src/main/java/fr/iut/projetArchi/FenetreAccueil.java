@@ -1,13 +1,16 @@
 package fr.iut.projetArchi;
 
 import fr.iut.projetArchi.controller.CatalogueController;
+import fr.iut.projetArchi.controller.Observable;
+import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
+import fr.iut.projetArchi.observateur.Observateur;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FenetreAccueil extends JFrame implements ActionListener {
+public class FenetreAccueil extends JFrame implements ActionListener, Observateur {
 
     private final JButton btAjouter;
     private final JButton btSupprimer;
@@ -83,6 +86,7 @@ public class FenetreAccueil extends JFrame implements ActionListener {
         btSelectionner.addActionListener(this);
 
         CatalogueController.initController();
+        Observable.attacher(this);
         CatalogueController.recupererCataloguesEnBD();
         modifierDetailCatalogues(CatalogueController.getEtatCatalogues());
         modifierListesCatalogues(CatalogueController.getNomsCatalogues());
@@ -107,10 +111,9 @@ public class FenetreAccueil extends JFrame implements ActionListener {
             if (texteSupprime != null) CatalogueController.supprimerCatalogue(texteSupprime);
         }
         if (e.getSource() == btSelectionner) {
-            String texteSelection = (String) cmbSupprimer.getSelectedItem();
+            String texteSelection = (String) cmbSelectionner.getSelectedItem();
             if (texteSelection != null) {
                 CatalogueController.selectionnerCatalogue(texteSelection);
-                this.dispose();
             }
         }
     }
@@ -135,5 +138,12 @@ public class FenetreAccueil extends JFrame implements ActionListener {
         if (detailCatalogues != null) {
             for (String detailCatalogue : detailCatalogues) taDetailCatalogues.append(detailCatalogue + "\n");
         }
+    }
+
+    @Override
+    public void maj() {
+        modifierDetailCatalogues(CatalogueController.getEtatCatalogues());
+        modifierListesCatalogues(CatalogueController.getNomsCatalogues());
+        modifierNbCatalogues(CatalogueController.getNbCatalogues());
     }
 }

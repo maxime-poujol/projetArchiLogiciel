@@ -5,12 +5,19 @@ import fr.iut.projetArchi.metier.catalogue.Catalogue;
 
 import java.sql.SQLException;
 
-public class StockController {
+public class StockController extends Observable{
 
 
-    public static void openWindowStock() throws SQLException {
-        new FenetreAffichage(CatalogueController.getCurrentCatalogue().toString());
+    public static void openWindowStock() {
+        new FenetreAffichage(getEtatStock());
     }
+
+    public static String getEtatStock() {
+        System.out.println(CatalogueController.getCurrentCatalogue());
+        return CatalogueController.getCurrentCatalogue().toString();
+    }
+
+
 
 
 }

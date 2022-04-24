@@ -1,6 +1,7 @@
 package fr.iut.projetArchi;
 
 import fr.iut.projetArchi.controller.CatalogueController;
+import fr.iut.projetArchi.controller.Observable;
 import fr.iut.projetArchi.controller.ProduitController;
 import fr.iut.projetArchi.controller.StockController;
 
@@ -72,10 +73,6 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new FenetrePrincipale();
-    }
-
     public void actionPerformed(ActionEvent e) {
 
 /* tabProduits permet de tester le fonctionnement des fenêtres avec un tableau de noms de produits "en dur"
@@ -85,21 +82,13 @@ public class FenetrePrincipale extends JFrame implements ActionListener, WindowL
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 
         if (e.getSource() == btAfficher) {
-            try {
-                StockController.openWindowStock();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            StockController.openWindowStock();
         }
         if (e.getSource() == btNouveauProduit) {
             CatalogueController.openWindowAjoutProduit();
         }
         if (e.getSource() == btSupprimerProduit) {
-            try {
-                CatalogueController.openWindowSupprimerProduit();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            CatalogueController.openWindowSupprimerProduit();
         }
 //		if (e.getSource() == btSupprimerCategorie)
 //			new FenetreSuppressionCategorie(tabCategories);

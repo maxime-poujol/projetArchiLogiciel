@@ -1,43 +1,62 @@
 package fr.iut.projetArchi.controller;
 
+import fr.iut.projetArchi.FenetreAccueil;
 import fr.iut.projetArchi.FenetreNouveauProduit;
+import fr.iut.projetArchi.FenetrePrincipale;
 import fr.iut.projetArchi.FenetreSuppressionProduit;
 import fr.iut.projetArchi.dao.catalogue.CatalogueDAO;
 import fr.iut.projetArchi.factory.AbstractFactory;
 import fr.iut.projetArchi.metier.catalogue.Catalogue;
 import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
+import fr.iut.projetArchi.observateur.Observateur;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-public class CatalogueController {
+public class CatalogueController extends Observable{
 
     private static List<I_Catalogue> lesCatalogues;
     private static I_Catalogue currentCatalogue;
     private static CatalogueDAO catalogueDAO;
 
+    private static List<Observateur> observateurs;
+
+    private static boolean firstSelected = false;
+
     public static void initController() {
         lesCatalogues = new ArrayList<>();
         catalogueDAO = AbstractFactory.getInstance().createCatalogueDAO();
+
     }
 
     public static void openWindowAjoutProduit() {
         new FenetreNouveauProduit();
     }
 
-    public static void openWindowSupprimerProduit() throws SQLException {
+    public static void openWindowSupprimerProduit() {
         new FenetreSuppressionProduit(currentCatalogue.getNomProduits());
     }
 
+    public static void openMainWindow() {
+        if (!firstSelected) {
+            new FenetrePrincipale();
+            firstSelected = true;
+        }
+
+    }
+
     public static boolean ajouterProduit(String nom, double prixHT, int quantite) {
-        return currentCatalogue.addProduit(nom, prixHT, quantite);
+        boolean added = currentCatalogue.addProduit(nom, prixHT, quantite);
+        avertir();
+        return added;
     }
 
     public static boolean supprimerProduit(String nom) {
-        return currentCatalogue.removeProduit(nom);
+        boolean removed = currentCatalogue.removeProduit(nom);
+        avertir();
+        return removed;
     }
 
     public static void recupererCataloguesEnBD() {
@@ -66,7 +85,11 @@ public class CatalogueController {
     }
 
     public static void selectionnerCatalogue(String name) {
+        System.out.println(name);
+        openMainWindow();
         currentCatalogue = getCatalogueByName(name);
+        currentCatalogue.updateListeProduits();
+        avertir();
     }
 
     public static I_Catalogue getCurrentCatalogue() {
@@ -79,7 +102,7 @@ public class CatalogueController {
 
             int index = 0;
             for (I_Catalogue catalogue : lesCatalogues) {
-                etat[index] = catalogue.getNom() + " : " + catalogue.getNbProduits() + " produits";
+                etat[index] = catalogue.getNom() + " : " + catalogueDAO.getNbProduits(catalogue) + " produits";
                 index++;
             }
             return etat;
@@ -97,6 +120,7 @@ public class CatalogueController {
             I_Catalogue catalogue = new Catalogue(name);
             lesCatalogues.add(catalogue);
             catalogueDAO.create(catalogue);
+            avertir();
         }
     }
 
@@ -105,6 +129,7 @@ public class CatalogueController {
         if (catalogue != null) {
             lesCatalogues.remove(catalogue);
             catalogueDAO.delete(catalogue);
+            avertir();
         }
 
     }

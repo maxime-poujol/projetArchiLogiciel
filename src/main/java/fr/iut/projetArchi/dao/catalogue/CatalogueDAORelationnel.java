@@ -2,8 +2,6 @@ package fr.iut.projetArchi.dao.catalogue;
 
 import fr.iut.projetArchi.metier.catalogue.Catalogue;
 import fr.iut.projetArchi.metier.catalogue.I_Catalogue;
-import fr.iut.projetArchi.metier.produits.I_Produit;
-import fr.iut.projetArchi.metier.produits.Produit;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -80,5 +78,19 @@ public class CatalogueDAORelationnel implements CatalogueDAO {
     @Override
     public I_Catalogue find(String nom) {
         return null;
+    }
+
+    @Override
+    public int getNbProduits(I_Catalogue catalogue) {
+        try {
+            PreparedStatement ps = requetePrepare("SELECT COUNT(*) FROM produits p JOIN catalogues c ON c.nom = p.nomCatalogue WHERE c.nom = ?");
+            ps.setString(1,catalogue.getNom());
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

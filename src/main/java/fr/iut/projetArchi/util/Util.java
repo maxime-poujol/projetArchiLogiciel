@@ -9,7 +9,7 @@ public class Util {
         format.setMinimumFractionDigits(2);
         format.setMaximumFractionDigits(2);
 
-        return format.format(valeur).replace(',', '.');
+        return format.format(valeur).replace(',', '.').replace(" ", "");
     }
 
     public static String frStringDeuxChiffreApresVirgule(double valeur) {

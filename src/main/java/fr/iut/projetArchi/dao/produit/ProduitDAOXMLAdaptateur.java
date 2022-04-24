@@ -36,4 +36,9 @@ public class ProduitDAOXMLAdaptateur implements ProduitDAO {
     public I_Produit find(String nom) {
         return produitDAO_xml.lire(nom);
     }
+
+    @Override
+    public List<I_Produit> findByCatalogue(String catalogueName) {
+        return null;
+    }
 }
