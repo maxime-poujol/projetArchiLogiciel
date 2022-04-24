@@ -13,7 +13,7 @@ public abstract class Observable {
         observateurs.add(observateur);
     }
 
-    public static void avertir() {
+    protected static void avertir() {
         for (Observateur o : observateurs) {
             o.maj();
         }
