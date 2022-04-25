@@ -22,15 +22,15 @@ CREATE TABLE Produits
     nom            VARCHAR(16),
     prixUnitaireHT NUMBER,
     qteStock       NUMBER,
-    idCatalogue    NUMBER,
+    nomCatalogue    VARCHAR(32),
     CONSTRAINT pk_produits PRIMARY KEY (idProduit),
     CONSTRAINT un_produits_nom UNIQUE (nom),
-    CONSTRAINT fk_produit_idCatalogue FOREIGN KEY (idCatalogue) REFERENCES Catalogues (idCatalogue)
+    CONSTRAINT fk_produit_nomCatalogue FOREIGN KEY (nomCatalogue) REFERENCES Catalogues (nom)
 );
 
 CREATE SEQUENCE seq_produits;
 
-CREATE OR REPLACE PROCEDURE insert_produit(p_nom Produits.nom%TYPE, p_qteStock Produits.qtestock%TYPE, p_prixHT Produits.prixunitaireht%TYPE, p_idCatalogue Produits.idCatalogue%TYPE) IS
+CREATE OR REPLACE PROCEDURE insert_produit(p_nom Produits.nom%TYPE, p_qteStock Produits.qtestock%TYPE, p_prixHT Produits.prixunitaireht%TYPE, p_nomCatalogue Produits.nomCatalogue%TYPE) IS
 BEGIN
-    INSERT INTO Produits VALUES(seq_produits.nextval,p_nom,p_prixHT,p_qteStock,p_idCatalogue);
+    INSERT INTO Produits VALUES(seq_produits.nextval,p_nom,p_prixHT,p_qteStock,p_nomCatalogue);
 END;
