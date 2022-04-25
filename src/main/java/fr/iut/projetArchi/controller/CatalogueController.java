@@ -21,8 +21,6 @@ public class CatalogueController extends Observable{
     private static I_Catalogue currentCatalogue;
     private static CatalogueDAO catalogueDAO;
 
-    private static List<Observateur> observateurs;
-
     private static boolean firstSelected = false;
 
     public static void initController() {
